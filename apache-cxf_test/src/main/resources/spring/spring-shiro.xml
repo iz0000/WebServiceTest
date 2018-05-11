@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <!-- shiro 过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="login"/>
+        <property name="unauthorizedUrl" value="403.html"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /index = anon
+                /login = anon
+                /sublogin = anon
+                /login.html = anon
+                /login.jsp = anon
+                /register = anon
+                /logout = anon
+                /resources/** = anon
+                /style/** = anon
+                /plugin/** = anon
+                /download/** = anon
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+    <!-- 单realm应用。如果有多个realm，使用‘realms’属性代替 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 自定义角色 -->
+        <property name="realm" ref="customRealm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <!-- 自定义的缓存管理器 -->
+        <property name="cacheManager" ref="redisCacheManager"/>
+        <!-- 自带的缓存管理器 -->
+        <!--
+        <property name="cacheManager" ref="cacheManager"/>
+        -->
+    </bean>
+
+    <bean id="customRealm" class="com.xl.exp.realm.CustomRealm" >
+        <property name="authenticationCachingEnabled" value="true" />
+        <property name="authorizationCachingEnabled" value="true" />
+        <!-- -->
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+    </bean>
+    <!-- shiro 自带的 JdbcRealm -->
+    <bean id="sampleRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 查询 sql 语句
+        <property name="authenticationQuery"
+                  value="select t.password from my_user t where t.username = ?" />
+        <property name="userRolesQuery"
+                  value="select a.rolename from my_user_role t left join my_role a on t.roleid = a.id where t.username = ? " />
+        <property name="permissionsQuery"
+                  value="SELECT B.PERMISSION FROM MY_ROLE T LEFT JOIN MY_ROLE_PERMISSION A ON T.ID = A.ROLE_ID LEFT JOIN MY_PERMISSION B ON A.PERMISSION = B.ID WHERE T.ROLENAME = ? " />
+        -->
+        <property name="permissionsLookupEnabled" value="true"/>
+        <property name="saltStyle" value="NO_SALT"/>
+        <!-- -->
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+    </bean>
+    <!-- 密码加密设置 storedCredentialsHexEncoded 默认是true，此时用的是密码加密用的是Hex编码；false时用Base64编码-->
+    <bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+    <!-- EhCacheManager -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>
+
+    <bean id="sessionManager" class="com.xl.exp.session.SysSessionManager">
+        <property name="sessionDAO" ref="redisSessionDao"/>
+
+    </bean>
+
+    <bean id="redisSessionDao" class="com.xl.exp.session.RedisSessionDao" />
+
+    <bean id="redisCacheManager" class="com.xl.exp.cache.RedisCacheManager"/>
+
+    <!--
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    /unauthorized
+                </prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    /unauthenticated
+                </prop>
+            </props>
+        </property>
+    </bean>
+    -->
+</beans>

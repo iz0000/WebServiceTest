@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/WebServiceTest.iml" filepath="$PROJECT_DIR$/.idea/WebServiceTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apache-cxf_test/apache-cxf test.iml" filepath="$PROJECT_DIR$/apache-cxf_test/apache-cxf test.iml" />
     </modules>
   </component>
 </project>
