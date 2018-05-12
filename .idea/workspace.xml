@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="45d86d92-a8f5-42ec-bcce-a4264d427cd2" name="Default" comment="init">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-redis.xml" afterPath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-redis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-shiro.xml" afterPath="$PROJECT_DIR$/apache-cxf_test/src/main/resources/spring/spring-shiro.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/apache-cxf_test/target/" />
@@ -541,12 +538,20 @@
       <updated>1526043442064</updated>
       <workItem from="1526043444293" duration="9257000" />
       <workItem from="1526116776795" duration="2494000" />
-      <workItem from="1526119358771" duration="4076000" />
+      <workItem from="1526119358771" duration="4099000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1526124304746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526124304746</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15827000" />
+    <option name="totallyTimeSpent" value="15850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
