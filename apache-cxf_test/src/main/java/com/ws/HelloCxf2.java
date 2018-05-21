@@ -7,9 +7,8 @@ import javax.jws.WebService;
 
 @Component
 @WebService
-public interface HelloCxf {
+public interface HelloCxf2 {
 
     @WebMethod
-    String sayHello() throws Exception;
-
+    String printDateTime();
 }

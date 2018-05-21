@@ -6,16 +6,20 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+
+    <!--
     <bean id="jaxWsServiceFactoryBean" class="org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean">
         <property name="wrapped" value="true" />
     </bean>
 
-    <jaxws:endpoint id="serviceimp" address="/person"
+
+    <jaxws:endpoint id="serviceimp" address="/helloCxf"
                     implementor="com.ws.impl.HelloCxfImpl">
         <jaxws:serviceFactory>
             <ref bean="jaxWsServiceFactoryBean" />
         </jaxws:serviceFactory>
     </jaxws:endpoint>
-
+    -->
 
 </beans>
